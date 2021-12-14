@@ -74,9 +74,8 @@ async function handler(apiOptions, actions) {
   const resource = getResource();
   try {
     const file = await readLocalFile(true);
-    console.log(file.img)
     onStart({ name: file.name, size: file.file.size });
-    const response = await api.uploadFileToId({ apiOptions, parentId: resource.id, file, onProgress });
+    const response = await api.uploadFileToId({ apiOptions, parentId: resource.id, preview: file.preview, file, onProgress });
     const newResource = normalizeResource(response.body[0]);
     const notifications = getNotifications();
     const notification = notifUtils.getNotification(notifications, notificationId);

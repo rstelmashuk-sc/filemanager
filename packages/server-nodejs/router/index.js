@@ -6,10 +6,15 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const path = require('path');
 
+const urlencodedParser = express.urlencoded({ extended: false });
+
 const {
   id2path,
   handleError
 } = require('./lib');
+
+// TODO: Tmp solution
+
 
 module.exports = config => {
   const router = express.Router();
@@ -68,6 +73,11 @@ module.exports = config => {
 
   router.route('/download').
     get(connect('./download'));
+
+  router.post('/preview', urlencodedParser, (req, res) => {
+    const name = req.body.name;
+  });
+
 
   router.use((err, req, res, next) => handleError({ config, req, res })(err));
   return router;

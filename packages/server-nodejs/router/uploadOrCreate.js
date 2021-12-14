@@ -54,7 +54,7 @@ const upload = multer({
         catch(cb);
     },
     filename(req, file, cb) {
-      const { parentId } = req.body;
+      const { parentId, preview } = req.body;
 
       try {
         checkName(file.originalname);
@@ -89,6 +89,18 @@ const upload = multer({
             } while (basenames.includes(basename));
           }
 
+          const previewPath = path.join(__dirname, '..', '/preview/preview.json');
+          const previewObj = {
+            name: basename,
+            base: preview,
+            parentId,
+          }
+
+          fs.readFile(previewPath, 'utf8', (err, data) => {
+            const previewArray = JSON.parse(data);
+            previewArray.push(previewObj);
+            fs.writeFile(previewPath, JSON.stringify(previewArray), (err) => {console.log(err)});
+          })
           cb(null, basename);
         }).
         catch(cb);

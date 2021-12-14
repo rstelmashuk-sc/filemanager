@@ -27,5 +27,9 @@
     "publish": "lerna publish --exact --skip-git --force-publish=* --repo-version $(jq -r '.version' lerna.json) --yes",
     "cypress-open": "npm start & sleep 30 && cypress open --project .",
     "cypress-run": "npm start & sleep 30 && cypress run"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.15",
+    "querystring": "^0.2.1"
   }
 }

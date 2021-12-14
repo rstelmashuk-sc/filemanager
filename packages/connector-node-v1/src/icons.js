@@ -1,3 +1,5 @@
+import request from 'superagent';
+
 import icons from './icons-svg';
 
 const dirIcon = icons.folder;
@@ -27,6 +29,9 @@ export function getIcon(resource) {
     return { svg: soundFileIcon, fill: `#e53935` };
   } else if (matchFileExtensions(resource.name, pictureFilesExtensions)) {
     return { svg: pictureFileIcon, fill: `#e53935` };
+    // const base = await request('POST', 'http://localhost:3020/preview').field('name', resource.name)
+    // console.log(base)
+    // return { svg: `<img src=${base.base} />`, fill: `#e53935` };
   } else if (matchFileExtensions(resource.name, videoFilesExtensions)) {
     return { svg: videoFileIcon, fill: `#e53935` };
   } else if (matchFileExtensions(resource.name, archiveFilesExtensions)) {

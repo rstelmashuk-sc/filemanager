@@ -93,11 +93,12 @@ async function getParentIdForResource(options, resource) {
   return resource.parentId;
 }
 
-async function uploadFileToId({ apiOptions, parentId, file, onProgress }) {
+async function uploadFileToId({ apiOptions, parentId, preview, file, onProgress }) {
   const route = `${apiOptions.apiRoot}/files`;
   return request.post(route).
     field('type', 'file').
     field('parentId', parentId).
+    field('preview', preview).
     attach('files', file.file, file.name).
     on('progress', event => {
       onProgress(event.percent);

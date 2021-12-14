@@ -49,16 +49,26 @@ async function readLocalFile() {
       if (file) {
         const reader = new FileReader();
         reader.onload = (e) => {
-          console.log(e.target.result);
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext("2d");
+
+          const image = new Image();
+          image.src = String(e.target.result);
+          image.onload = () => {
+            ctx.drawImage(image, 0, 0, 18, 18);
+            resolve({
+              type: file.type,
+              name: file.name,
+              file,
+              preview: canvas.toDataURL(),
+            });
+          }
+          canvas.width = 48;
+          canvas.height = 48;
         };
         reader.readAsDataURL(file);
       }
       navigator.removeChild(dragArea);
-      resolve({
-        type: file.type,
-        name: file.name,
-        file,
-      });
     });
 
     dragArea.addEventListener('dragover', e => {
