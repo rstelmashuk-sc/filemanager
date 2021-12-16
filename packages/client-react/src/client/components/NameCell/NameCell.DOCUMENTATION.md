@@ -14,12 +14,16 @@ NameCell is
 ```
 {React.createElement(NameCell({
   loading: false,
-  getIcon: () => ({ 
-   svg: `<svg viewBox="0 0 120 120" version="1.1">
-      <circle cx="60" cy="60" r="50"/>
-    </svg>`, 
-   fill: 'rgba(0, 0, 0, 0.72)' 
-  })
+  getIcon: () => {
+    return new Promise((resolve, reject) => {
+      const srcImg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT8Y0yepGj1ZRZfcQR3oEJpoVJESDiT8aoEw&usqp=CAU'
+      const icon = {
+        svg: `<img src=${srcImg} alt="icon"/>`,
+        fill: 'rgba(0, 0, 0, 0.72)'
+      }
+      resolve(icon)
+    })
+  }
 }), { cellData: 'File name' })}
 ```
 
@@ -30,4 +34,5 @@ NameCell
 ### License
 
 Apache License Version 2.0
+
 
