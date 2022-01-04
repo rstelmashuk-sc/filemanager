@@ -5,6 +5,8 @@ const translations = {
     uploadingItems: 'Uploading {quantity} items',
     upload: 'Upload',
     remove: 'Remove',
+    copy: 'Copy',
+    paste: 'Paste',
     download: 'Download',
     rename: 'Rename',
     creating: 'Creating',

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prepare-demo": "rimraf test-files && mkdirp test-files && cross-env ../../demo-filesystem/populate-demo-fs.sh ./test-files",
-    "start": "npm run prepare-demo && cross-env NODE_ENV=development node start.js",
+    "start": "npm run prepare-demo && cross-env NODE_ENV=development nodemon start.js",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
     "build-api-docs": "rimraf -rf api-docs.tmp && mkdirp api-docs.tmp/source api-docs.tmp/docs && cp -r docs/api-docs api-docs.tmp/source && sed -i s@__env__baseURI__@$SERVER_URL@g api-docs.tmp/source/api-docs/main.raml && raml2html api-docs.tmp/source/api-docs/main.raml > api-docs.tmp/docs/index.html",

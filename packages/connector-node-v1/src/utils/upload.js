@@ -1,6 +1,6 @@
 async function readLocalFile(typeAction) {
   return new Promise((resolve, reject) => {
-    if (typeAction.action === 'click') {
+    if (typeAction.action === 'click' || typeAction.type === 'click') {
       const uploadInput = document.createElement("input");
       uploadInput.addEventListener('change', _ => {
         const file = uploadInput.files[0];

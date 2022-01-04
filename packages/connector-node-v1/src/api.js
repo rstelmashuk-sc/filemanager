@@ -150,6 +150,15 @@ async function removeResources(options, selectedResources) {
   return Promise.all(selectedResources.map(resource => removeResource(options, resource)))
 }
 
+async function copyResources(options, resources, toResource) {
+  const route = `${options.apiRoot}/copy`;
+  const method = 'POST';
+  return request(method, route).send({
+    resources,
+    toResource
+  })
+}
+
 export default {
   init,
   hasSignedIn,
@@ -164,5 +173,6 @@ export default {
   downloadResources,
   renameResource,
   removeResources,
-  uploadFileToId
+  uploadFileToId,
+  copyResources
 };

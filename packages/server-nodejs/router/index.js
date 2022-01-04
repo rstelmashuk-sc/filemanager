@@ -69,6 +69,9 @@ module.exports = config => {
   router.route('/download').
     get(connect('./download'));
 
+  router.route('/copy').
+    post(connect('./copy'));
+
   router.use((err, req, res, next) => handleError({ config, req, res })(err));
   return router;
 };
