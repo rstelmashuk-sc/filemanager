@@ -2,7 +2,7 @@ import icons from '../icons-svg';
 import getMess from '../translations';
 import clipboard from "../clipboard";
 
-const label = 'copy';
+const label = 'cut';
 
 const handler = (selectedResource, actions) => {
   const {
@@ -20,7 +20,7 @@ export default (apiOptions, actions) => {
   const { getResource, getSelectedResources } = actions;
   return {
     id: label,
-    icon: { svg: icons.copy },
+    icon: { svg: icons.cut },
     label: localeLabel,
     shouldBeAvailable: (apiOptions) => {
       const resource = getResource();

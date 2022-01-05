@@ -10,11 +10,24 @@ const handler = (options, toResource, actions) => {
     navigateToDir,
     getResource,
   } = actions;
-  api.copyResources(options, clipboard.getClipboard(), toResource).
-    then(() => {
-      const resource = getResource();
-      navigateToDir(resource.id, null, false);
-    })
+
+  if (clipboard.getTrigger() === 'copy') {
+    api.copyResources(options, clipboard.getClipboard(), toResource).
+      then((res) => {
+        const resource = getResource();
+        navigateToDir(resource.id, null, false);
+      });
+  }
+
+  if (clipboard.getTrigger() === 'cut') {
+    api.cutResources(options, clipboard.getClipboard(), toResource).
+      then((res) => {
+        const resource = getResource();
+        clipboard.clearClipboard();
+        clipboard.clearTrigger();
+        navigateToDir(resource.id, null, false);
+      });
+  }
 }
 
 export default (apiOptions, actions) => {
@@ -26,7 +39,7 @@ export default (apiOptions, actions) => {
     label: localeLabel,
     shouldBeAvailable: (apiOptions) => {
       const resource = getResource();
-      if (!resource || !resource.capabilities) {
+      if (!resource || !resource.capabilities || !clipboard.getClipboard()) {
         return false
       }
       return resource.capabilities.canAddChildren

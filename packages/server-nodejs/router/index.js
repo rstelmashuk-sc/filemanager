@@ -72,6 +72,9 @@ module.exports = config => {
   router.route('/copy').
     post(connect('./copy'));
 
+  router.route('/cut').
+    post(connect('./cut'));
+
   router.use((err, req, res, next) => handleError({ config, req, res })(err));
   return router;
 };

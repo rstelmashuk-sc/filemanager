@@ -7,6 +7,7 @@ const translations = {
     remove: 'Remove',
     copy: 'Copy',
     paste: 'Paste',
+    cut: 'Cut',
     download: 'Download',
     rename: 'Rename',
     creating: 'Creating',

@@ -159,6 +159,15 @@ async function copyResources(options, resources, toResource) {
   })
 }
 
+async function cutResources(options, resources, toResource) {
+  const route = `${options.apiRoot}/cut`;
+  const method = 'POST';
+  return request(method, route).send({
+    resources,
+    toResource
+  })
+}
+
 export default {
   init,
   hasSignedIn,
@@ -174,5 +183,6 @@ export default {
   renameResource,
   removeResources,
   uploadFileToId,
-  copyResources
+  copyResources,
+  cutResources,
 };

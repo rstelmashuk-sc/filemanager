@@ -25,9 +25,8 @@ module.exports = ({ config, req, res }) => {
         }
       }).
       then(() => {
-        fs.copySync(resourcePath, path.join(parentPath, basename))
-        res.status(200).send('Copy completed')
+        fs.moveSync(resourcePath, path.join(parentPath, basename));
+        res.status(200).send('Cut completed')
       })
   })
 };
-
